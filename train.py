@@ -6,7 +6,7 @@ import data
 import importlib
 import argparse
 
-def run(model_name, mode, ckpt_path, batch_size, model_dir):
+def run(model_name, mode, ckpt_path, batch_size, model_dir=""):
     # generate random dataset
     items = [
         ("value_fea", tf.float32, [1000], 1000),
@@ -25,8 +25,18 @@ def run(model_name, mode, ckpt_path, batch_size, model_dir):
     def input_fn():
         dataset = tf.data.TFRecordDataset([filepath])
         return dataset.prefetch(batch_size).batch(batch_size).map(parse_input_fn)
-    if mode == "train":
-        trainer.train(input_fn)
+    ops = mode.split("_")
+    for op in ops:
+        if mode == "train":
+            trainer.train(input_fn)
+        elif mode == "eval":
+            trainer.eval(input_fn)
+        else:
+            raise ValueError("invalid mode %s" % mode)
+    if model_dir:
+        trainer.export_saved_model(
+            model_dir, 
+            serving_input_receiver_fn=data.gen_serving_input_fn(items))
 
 
 if __name__ == "__main__":

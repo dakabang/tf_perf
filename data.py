@@ -40,6 +40,7 @@ def _int64_feature(value):
   return tf.train.Feature(int64_list=tf.train.Int64List(value=value))
 
 def gen_parse_input_fn(items):
+    assert(len(items) > 0)
     features = dict()
     for item in items:
         name = item[0]
@@ -51,3 +52,23 @@ def gen_parse_input_fn(items):
         example = tf.io.parse_example(example_proto, features=features)
         return {k:v for k,v in example.items() if k!='label'}, example['label']
     return parse_tfrd_fn
+
+
+def gen_serving_input_fn(items):
+    """Serving input_fn that builds features from placeholders
+
+    Returns
+    -------
+    tf.estimator.export.ServingInputReceiver
+    """
+    assert(len(items) > 0)
+    features = dict()
+    for item in items:
+        name = item[0]
+        dtype = item[1]
+        shape = item[2]
+        length = item[3]
+        features.update({name: tf.compat.v1.placeholder(dtype=dtype, shape=shape, name=name)})
+    print (features)
+    exit(0)
+    return tf.estimator.export.build_raw_serving_input_receiver_fn(features)

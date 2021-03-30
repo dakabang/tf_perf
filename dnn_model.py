@@ -15,6 +15,9 @@ def model_fn(features, labels, mode, params):
     batch_size = params['batch_size']
     value_fea = features['value_fea']
     id_fea = features['id_fea']
+    print (value_fea)
+    print (id_fea)
+    exit(0)
     value_fea_len = value_fea.shape[1]
     id_fea_len = id_fea.shape[1]
     dynamic_embeddings = tfra.dynamic_embedding.get_variable(
