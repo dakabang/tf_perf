@@ -30,14 +30,12 @@ def model_fn(features, labels, mode, params):
     embs = tf.gather(embs, id_fea_idx)
     value_fea = tf.reshape(value_fea, [-1, value_fea_len])
     embs = tf.reshape(embs, [-1, id_fea_len * 32])
-    print (value_fea)
-    print (embs)
     inputs = tf.concat([value_fea, embs], axis=-1)
-    print (inputs)
     # three layer mlp
     out = mlp.multilayer_perception(inputs, [256, 64, 1])
-    logits = tf.reshape(out, shape=[-1])
-    loss = tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits)
+    logits = tf.reshape(out, [batch_size])
+    loss = tf.math.reduce_mean(
+        tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits))
     opt = de.DynamicEmbeddingOptimizer(tf.compat.v1.train.AdamOptimizer())
     if mode == tf.estimator.ModeKeys.TRAIN:
         train_op = opt.minimize(loss)
