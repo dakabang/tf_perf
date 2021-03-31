@@ -18,13 +18,13 @@ def run(model_name, mode, ckpt_path, batch_size, model_dir=""):
 
     model = importlib.import_module(model_name)
     trainer = tf.estimator.Estimator(
-        model_dir=model_dir, 
-        model_fn=model.model_fn, 
+        model_dir=ckpt_path,
+        model_fn=model.model_fn,
         params={'batch_size': batch_size})
     print ('train model from %s' % filepath)
     def input_fn():
         dataset = tf.data.TFRecordDataset([filepath])
-        return dataset.prefetch(batch_size).batch(batch_size).map(parse_input_fn)
+        return dataset.map(parse_input_fn).prefetch(batch_size).batch(batch_size)
     ops = mode.split("_")
     for op in ops:
         if mode == "train":
@@ -34,9 +34,15 @@ def run(model_name, mode, ckpt_path, batch_size, model_dir=""):
         else:
             raise ValueError("invalid mode %s" % mode)
     if model_dir:
+        print ("export model for serving to %s..." % model_dir)
+        features = [
+            ("value_fea", tf.float32, [1, 1000], 1000),
+            ("id_fea", tf.int64, [1, 100], 100),
+            ("label", tf.float32, [1], 1)
+        ]
         trainer.export_saved_model(
             model_dir, 
-            serving_input_receiver_fn=data.gen_serving_input_fn(items))
+            data.serving_input_fn(features, batch_size))
 
 
 if __name__ == "__main__":
@@ -53,3 +59,4 @@ if __name__ == "__main__":
         ckpt_path=args.ckpt_path,
         batch_size=args.batch_size, 
         model_dir=args.model_path)
+

@@ -54,7 +54,7 @@ def gen_parse_input_fn(items):
     return parse_tfrd_fn
 
 
-def gen_serving_input_fn(items):
+def serving_input_fn(items, batch_size):
     """Serving input_fn that builds features from placeholders
 
     Returns
@@ -68,7 +68,6 @@ def gen_serving_input_fn(items):
         dtype = item[1]
         shape = item[2]
         length = item[3]
-        features.update({name: tf.compat.v1.placeholder(dtype=dtype, shape=shape, name=name)})
-    print (features)
-    exit(0)
-    return tf.estimator.export.build_raw_serving_input_receiver_fn(features)
+        features.update({name: tf.compat.v1.placeholder(dtype, shape, name)})
+    print ("serving input %s" % features)
+    return tf.estimator.export.build_raw_serving_input_receiver_fn(features, batch_size)
