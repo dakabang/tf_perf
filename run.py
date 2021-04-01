@@ -6,22 +6,27 @@ import data
 import importlib
 import argparse
 
-def run(model_name, mode, ckpt_path, batch_size, model_dir=""):
+def run(model_name, 
+        mode, 
+        input_dict,
+        label_dict,
+        data_path,
+        ckpt_path, 
+        batch_size, 
+        model_dir=""):
     # generate random dataset
-    items = [
-        ("value_fea", tf.float32, [1000], 1000),
-        ("id_fea", tf.int64, [100], 100),
-        ("label", tf.float32, [], 1)
-    ]
-    filepath = data.gen_random_tfrd(items, 1000)
+    items = input_dict
+    items.extend(label_dict)
+    filepath = data_path
+    if not data_path:
+        filepath = data.gen_random_tfrd(items, 1000)
     parse_input_fn = data.gen_parse_input_fn(items)
-
     model = importlib.import_module(model_name)
     trainer = tf.estimator.Estimator(
         model_dir=ckpt_path,
         model_fn=model.model_fn,
         params={'batch_size': batch_size})
-    print ('train model from %s' % filepath)
+    print ('%s model from %s' % (mode, filepath))
     def input_fn():
         dataset = tf.data.TFRecordDataset([filepath])
         return dataset.map(parse_input_fn).prefetch(batch_size).batch(batch_size)
@@ -31,29 +36,41 @@ def run(model_name, mode, ckpt_path, batch_size, model_dir=""):
             trainer.train(input_fn)
         elif mode == "eval":
             trainer.eval(input_fn)
+        elif mode == "predict":
+            trainer.predict(input_fn)
         else:
             raise ValueError("invalid mode %s" % mode)
+    # Save model for serving
     if model_dir:
         print ("export model for serving to %s..." % model_dir)
-        features = [
-            ("value_fea", tf.float32, [1, 1000], 1000),
-            ("id_fea", tf.int64, [1, 100], 100),
-        ]
+        serving_input_dict = []
+        for x in input_dict:
+            serving_input_dict.append((x[0], x[1], [1] + x[2], x[3]))
         trainer.export_saved_model(
             model_dir, 
-            data.serving_input_fn(features, batch_size))
+            data.serving_input_fn(serving_input_dict, batch_size))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, help='model selected to run')
+    parser.add_argument('--model_name', type=str, help='model selected to run')
     parser.add_argument('--mode', type=str, help='run mode: train/eval/predict')
+    parser.add_argument('--data_path', type=str, default="", help='run mode: train/eval/predict')
     parser.add_argument('--ckpt_path', type=str, help='checkpoint save path')
     parser.add_argument('--model_path', type=str, help='save model path(for serving)')
     parser.add_argument('--batch_size', type=int, help='batch size')
     args = parser.parse_args()
+    input_dict = [
+        ("value_fea", tf.float32, [1000], 1000),
+        ("id_fea", tf.int64, [100], 100),
+    ]
+    label_dict = [("label", tf.float32, [], 1)]
     run(
-        model_name=args.model,
+        model_name=args.model_name,
         mode=args.mode,
+        input_dict=input_dict,
+        label_dict=label_dict,
+        data_path=args.data_path,
         ckpt_path=args.ckpt_path,
         batch_size=args.batch_size, 
         model_dir=args.model_path)

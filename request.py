@@ -5,6 +5,7 @@ from tensorflow_serving.apis import predict_pb2
 from tensorflow_serving.apis import prediction_service_pb2_grpc
 import grpc
 import data
+import argparse
 
 model_name = "tf_perf"
 model_signature_name = "outputs"
@@ -42,4 +43,9 @@ def run(filename, url, batch_size=1, is_shuffle=False):
         break
 
 if __name__ == "__main__":
-    run("./data.tfrd", "127.0.0.1:8500", batch_size=5)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_path', type=str, help='tfrd data path')
+    parser.add_argument('--url_tf', type=str, help='tf-serving url')
+    parser.add_argument('--batch_size', type=int, help='batch size')
+    args = parser.parse_args()
+    run(args.data_path, args.url_tf, args.batch_size)
