@@ -5,6 +5,7 @@ import tensorflow as tf
 import data
 import importlib
 import argparse
+import os
 
 def run(model_name, 
         mode, 
@@ -18,14 +19,16 @@ def run(model_name,
     items = input_dict
     items.extend(label_dict)
     filepath = data_path
-    if not data_path:
-        filepath = data.gen_random_tfrd(items, 1000)
+    if not os.path.exists(data_path):
+        filepath = data.gen_random_tfrd(
+            items, 1000, filename="data.tfrd" if not data_path else data_path)
     parse_input_fn = data.gen_parse_input_fn(items)
     model = importlib.import_module(model_name)
     trainer = tf.estimator.Estimator(
         model_dir=ckpt_path,
         model_fn=model.model_fn,
-        params={'batch_size': batch_size})
+        params={'batch_size': batch_size},
+        warm_start_from=ckpt_path)
     print ('%s model from %s' % (mode, filepath))
     def input_fn():
         dataset = tf.data.TFRecordDataset([filepath])
@@ -37,7 +40,8 @@ def run(model_name,
         elif mode == "eval":
             trainer.eval(input_fn)
         elif mode == "predict":
-            trainer.predict(input_fn)
+            predictions = trainer.predict(input_fn)
+            print (next(predictions))
         else:
             raise ValueError("invalid mode %s" % mode)
     # Save model for serving
