@@ -32,18 +32,19 @@ def model_fn(features, labels, mode, params):
     id_fea_shape = id_fea.shape
     id_fea = tf.reshape(id_fea, [-1])
     id_fea_val, id_fea_idx = tf.unique(id_fea)
-    embs = tfra.dynamic_embedding.embedding_lookup(
+    raw_embs = tfra.dynamic_embedding.embedding_lookup(
         params=dynamic_embeddings,
         ids=id_fea_val,
         name="embs")
-    embs = tf.gather(embs, id_fea_idx)
+    embs = tf.gather(raw_embs, id_fea_idx)
     embs = tf.reshape(embs, [-1, id_fea_len * embedding_dim])
     inputs = tf.concat([value_fea, embs], axis=-1)
     #inputs = value_fea
     # three layer mlp
-    out = mlp.multilayer_perception(inputs, [256, 64, 1])
+    out, weight_and_bias = mlp.multilayer_perception(inputs, [256, 64, 1])
     logits = tf.reshape(out, [-1])
     if mode == tf.estimator.ModeKeys.TRAIN:
+        global_step = tf.compat.v1.train.get_global_step()
         loss = tf.math.reduce_mean(
             tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits))
         opt = de.DynamicEmbeddingOptimizer(tf.compat.v1.train.AdamOptimizer())
@@ -53,7 +54,7 @@ def model_fn(features, labels, mode, params):
     elif mode == tf.estimator.ModeKeys.PREDICT:
         pass
     if mode == tf.estimator.ModeKeys.TRAIN:
-        train_op = opt.minimize(loss)
+        train_op = opt.minimize(loss, global_step=global_step)
         return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op)
     elif mode == tf.estimator.ModeKeys.EVAL:
         return tf.estimator.EstimatorSpec(mode, loss=loss)
@@ -63,7 +64,9 @@ def model_fn(features, labels, mode, params):
         }
         predictions = {
             "logits": logits,
-            "embs": embs
+            "embs": embs,
+            "raw_embs": tf.reshape(tf.slice(raw_embs, [0, 0], [100, 32]), [5, -1])
+            #"weight": tf.reshape(weight_and_bias[0]["weight_0"].read_value(), [5, -1])
         }
         for k,v in features.items():
             predictions.update({k: v})

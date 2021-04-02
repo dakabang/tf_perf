@@ -14,7 +14,8 @@ def run(model_name,
         data_path,
         ckpt_path, 
         batch_size, 
-        model_dir=""):
+        model_dir="",
+        warm_start_from=None):
     # generate random dataset
     items = input_dict
     items.extend(label_dict)
@@ -24,11 +25,16 @@ def run(model_name,
             items, 1000, filename="data.tfrd" if not data_path else data_path)
     parse_input_fn = data.gen_parse_input_fn(items)
     model = importlib.import_module(model_name)
+    run_config = tf.estimator.RunConfig(
+        save_checkpoints_steps=10,
+        save_checkpoints_secs=None
+    )
     trainer = tf.estimator.Estimator(
         model_dir=ckpt_path,
         model_fn=model.model_fn,
         params={'batch_size': batch_size},
-        warm_start_from=ckpt_path)
+        config=run_config,
+        warm_start_from=warm_start_from)
     print ('%s model from %s' % (mode, filepath))
     def input_fn():
         dataset = tf.data.TFRecordDataset([filepath])
@@ -41,7 +47,9 @@ def run(model_name,
             trainer.eval(input_fn)
         elif mode == "predict":
             predictions = trainer.predict(input_fn)
-            print (next(predictions))
+            for x in predictions:
+                print (x)
+                break
         else:
             raise ValueError("invalid mode %s" % mode)
     # Save model for serving
@@ -63,6 +71,7 @@ if __name__ == "__main__":
     parser.add_argument('--ckpt_path', type=str, help='checkpoint save path')
     parser.add_argument('--model_path', type=str, help='save model path(for serving)')
     parser.add_argument('--batch_size', type=int, help='batch size')
+    parser.add_argument('--warm_start_from', type=str, help='filepath to a checkpoint or SavedModel to warm-start from')
     args = parser.parse_args()
     input_dict = [
         ("value_fea", tf.float32, [1000], 1000),
@@ -77,5 +86,6 @@ if __name__ == "__main__":
         data_path=args.data_path,
         ckpt_path=args.ckpt_path,
         batch_size=args.batch_size, 
-        model_dir=args.model_path)
+        model_dir=args.model_path,
+        warm_start_from=args.warm_start_from)
 

@@ -17,4 +17,4 @@ def multilayer_perception(input, hiddens):
     for i in range(len(hiddens)):
         out = tf.add(tf.matmul(prev, weights["weight_%d" % i]), bias["bias_%d" % i])
         prev = out
-    return out
+    return out, (weights, bias)
