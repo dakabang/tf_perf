@@ -20,7 +20,7 @@ def fea2req(features):
     return request
 
 
-def run(filename, url, batch_size=1, is_shuffle=False):
+def run(filename, url, batch_size=1, shuffle_size=0):
     channel = grpc.insecure_channel(url)
     stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
     items = [
@@ -33,6 +33,8 @@ def run(filename, url, batch_size=1, is_shuffle=False):
     tfrd_data = tfrd_data.map(parse_input_fn)
     if batch_size > 1:
         tfrd_data = tfrd_data.batch(batch_size)
+    if shuffle_size > 1:
+        tfrd_data = tfrd_data.shuffle(shuffle_size)
     for features in tfrd_data:
         # pass in feature, discard label
         req = fea2req(features[0])
@@ -47,5 +49,6 @@ if __name__ == "__main__":
     parser.add_argument('--data_path', type=str, help='tfrd data path')
     parser.add_argument('--url_tf', type=str, help='tf-serving url')
     parser.add_argument('--batch_size', type=int, help='batch size')
+    parser.add_argument('--shuffle_size', type=int, default=0, help='shuffle size')
     args = parser.parse_args()
-    run(args.data_path, args.url_tf, args.batch_size)
+    run(args.data_path, args.url_tf, args.batch_size, args.shuffle_size)

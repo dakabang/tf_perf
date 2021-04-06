@@ -13,8 +13,12 @@ def multilayer_perception(input, hiddens):
         else:
             weights.update({"weight_%d" % index: tf.Variable(tf.random.normal([hiddens[index - 1], hidden]))})
         bias.update({"bias_%d" % index: tf.Variable(tf.random.normal([hidden]))})
+    inners = []
+    inners.append(input)
     prev = input
     for i in range(len(hiddens)):
+        #out = tf.add(tf.matmul(prev, weights["weight_%d" % i]), bias["bias_%d" % i])
         out = tf.add(tf.matmul(prev, weights["weight_%d" % i]), bias["bias_%d" % i])
+        inners.append(out)
         prev = out
-    return out, (weights, bias)
+    return out, inners

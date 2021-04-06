@@ -6,6 +6,7 @@ import random
 from random import seed
 from random import randint
 import os
+import uuid
 
 def gen_random_tfrd(items, num_samples, filename="data.tfrd"):
     assert(len(items) > 0)
@@ -24,12 +25,17 @@ def gen_random_tfrd(items, num_samples, filename="data.tfrd"):
                 feature.update({name: _int64_feature([randint(0, 10000) for _ in range(length)])})
             elif dtype == tf.float32:
                 feature.update({name: _float_feature([random.random() for _ in range(length)])})
-            else:
-                raise ValueError("invalid dtype %s" % dtype)
+        feature.update({"logid": _bytes_feature((str(uuid.uuid4()).encode()))})
         example_proto = tf.train.Example(features=tf.train.Features(feature=feature))
         writer.write(example_proto.SerializeToString())
     print ("write tfrd %s done!" % filename)
     return filename
+
+def _bytes_feature(value):
+  """Returns a bytes_list from a string / byte."""
+  if isinstance(value, type(tf.constant(0))):
+    value = value.numpy() # BytesList won't unpack a string from an EagerTensor.
+  return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
 
 def _float_feature(value):
   """Returns a float_list from a float / double."""

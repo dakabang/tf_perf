@@ -17,15 +17,23 @@ def model_fn(features, labels, mode, params):
     value_fea = features['value_fea']
     id_fea = features['id_fea']
     id_fea_len = id_fea.shape[1]
+    batch_size = params["batch_size"]
+    ps_num = params.get('ps_num', 0)
     is_training = True if mode == tf.estimator.ModeKeys.TRAIN else False
+    devices = None
     if is_training:
+        if ps_num > 0:
+            devices = ["/job:ps/replica:0/task:{}/CPU:0".format(i) for i in range(ps_num)]
         initializer=tf.keras.initializers.RandomNormal(0.0, 0.1)
     else:
+        if ps_num > 0:
+            devices = ["/job:localhost/replica:0/task:{}/CPU:0".format(i) for i in range(ps_num)]
         initializer=tf.keras.initializers.Zeros()
     if mode == tf.estimator.ModeKeys.PREDICT:
         tfra.dynamic_embedding.enable_inference_mode()
     dynamic_embeddings = tfra.dynamic_embedding.get_variable(
         name="dynamic_embeddings",
+        devices = devices,
         dim=embedding_dim,
         initializer=initializer,
         trainable=is_training)
@@ -39,9 +47,9 @@ def model_fn(features, labels, mode, params):
     embs = tf.gather(raw_embs, id_fea_idx)
     embs = tf.reshape(embs, [-1, id_fea_len * embedding_dim])
     inputs = tf.concat([value_fea, embs], axis=-1)
-    #inputs = value_fea
+    print ("inputs shape %s" % inputs)
     # three layer mlp
-    out, weight_and_bias = mlp.multilayer_perception(inputs, [256, 64, 1])
+    out, inners = mlp.multilayer_perception(inputs, [256, 64, 1])
     logits = tf.reshape(out, [-1])
     if mode == tf.estimator.ModeKeys.TRAIN:
         global_step = tf.compat.v1.train.get_global_step()
@@ -63,10 +71,8 @@ def model_fn(features, labels, mode, params):
             "outputs": tf.estimator.export.PredictOutput(outputs=logits)
         }
         predictions = {
+            "logid": features["logid"],
             "logits": logits,
-            "embs": embs,
-            "raw_embs": tf.reshape(tf.slice(raw_embs, [0, 0], [100, 32]), [5, -1])
-            #"weight": tf.reshape(weight_and_bias[0]["weight_0"].read_value(), [5, -1])
         }
         for k,v in features.items():
             predictions.update({k: v})
