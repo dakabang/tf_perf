@@ -8,6 +8,11 @@ import importlib
 import argparse
 import os
 import json
+import logging
+logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+    datefmt='%Y-%m-%d:%H:%M:%S',
+    level=logging.INFO)
+logging.getLogger().setLevel(logging.INFO)
 
 from multiprocessing import Process
 
@@ -75,15 +80,17 @@ def distributed_run(model_name, mode, input_dict, label_dict,
             model_dir, warm_start_from, node_num)
 
 
-def run(model_name, mode, input_dict,
-        label_dict, data_path, ckpt_path, batch_size, 
+def run(model_name, mode,
+        data_path, ckpt_path, batch_size, 
         shuffle_size, model_dir, warm_start_from, ps_num):
-    print ("TF_CONFIG ", os.environ['TF_CONFIG'])
+    print ("TF_CONFIG process start ", os.environ['TF_CONFIG'])
+    model = importlib.import_module(model_name)
+    input_dict = model.input_dict
+    label_dict = model.label_dict
     # generate random dataset
     items = input_dict
     items.extend(label_dict)
     parse_input_fn = data.gen_parse_input_fn(items)
-    model = importlib.import_module(model_name)
     run_config = tf.estimator.RunConfig(
         save_checkpoints_steps=10,
         save_checkpoints_secs=None
@@ -130,7 +137,7 @@ def run(model_name, mode, input_dict,
         trainer.export_saved_model(
             model_dir, 
             data.serving_input_fn(serving_input_dict, batch_size))
-
+    print ("TF_CONFIG process end ", os.environ['TF_CONFIG'])
 
 
 if __name__ == "__main__":
@@ -146,12 +153,6 @@ if __name__ == "__main__":
     parser.add_argument('--node_num', type=int, default=1, help='number of parameter server and workers')
     parser.add_argument('--port', type=int, default=7553, help='port of worker/ps when using distributed traning')
     args = parser.parse_args()
-    input_dict = [
-        ("logid", tf.string, [1], 1),
-        ("value_fea", tf.float32, [1000], 1000),
-        ("id_fea", tf.int64, [100], 100),
-    ]
-    label_dict = [("label", tf.float32, [], 1)]
     distributed_run(
         model_name=args.model_name,
         mode=args.mode,

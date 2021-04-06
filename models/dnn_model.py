@@ -2,7 +2,7 @@
 # coding=utf-8
 import numpy as np
 import tensorflow as tf
-tf.compat.v1.disable_eager_execution()
+#tf.compat.v1.disable_eager_execution()
 
 import tensorflow_datasets as tfds
 import tensorflow_recommenders_addons as tfra
@@ -11,6 +11,13 @@ from tensorflow.keras.layers import Dense
 
 import mlp
 embedding_dim = 32
+
+input_dict = [
+    ("logid", tf.string, [1], 1),
+    ("value_fea", tf.float32, [1000], 1000),
+    ("id_fea", tf.int64, [100], 100),
+]
+label_dict = [("label", tf.float32, [], 1)]
 
 def model_fn(features, labels, mode, params):
     print ("features %s" % features)
@@ -36,7 +43,8 @@ def model_fn(features, labels, mode, params):
         devices = devices,
         dim=embedding_dim,
         initializer=initializer,
-        trainable=is_training)
+        trainable=is_training,
+        init_size=8192)
     id_fea_shape = id_fea.shape
     id_fea = tf.reshape(id_fea, [-1])
     id_fea_val, id_fea_idx = tf.unique(id_fea)
@@ -47,6 +55,7 @@ def model_fn(features, labels, mode, params):
     embs = tf.gather(raw_embs, id_fea_idx)
     embs = tf.reshape(embs, [-1, id_fea_len * embedding_dim])
     inputs = tf.concat([value_fea, embs], axis=-1)
+    inputs = tf.compat.v1.layers.batch_normalization(inputs, training=is_training)
     print ("inputs shape %s" % inputs)
     # three layer mlp
     out, inners = mlp.multilayer_perception(inputs, [256, 64, 1])
@@ -55,14 +64,16 @@ def model_fn(features, labels, mode, params):
         global_step = tf.compat.v1.train.get_global_step()
         loss = tf.math.reduce_mean(
             tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits))
-        opt = de.DynamicEmbeddingOptimizer(tf.compat.v1.train.AdamOptimizer())
+        opt = de.DynamicEmbeddingOptimizer(tf.compat.v1.train.AdamOptimizer(beta1=0.9, beta2=0.999))
     elif mode == tf.estimator.ModeKeys.EVAL:
         loss = tf.math.reduce_mean(
             tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits))
     elif mode == tf.estimator.ModeKeys.PREDICT:
         pass
     if mode == tf.estimator.ModeKeys.TRAIN:
+        update_ops = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.UPDATE_OPS)
         train_op = opt.minimize(loss, global_step=global_step)
+        train_op = tf.group([train_op, update_ops])
         return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op)
     elif mode == tf.estimator.ModeKeys.EVAL:
         return tf.estimator.EstimatorSpec(mode, loss=loss)
