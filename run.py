@@ -17,13 +17,10 @@ logging.getLogger().setLevel(logging.INFO)
 from multiprocessing import Process
 
 
-def distributed_run(model_name, mode, input_dict, label_dict, 
+def distributed_run(model_name, mode, 
                     data_path, ckpt_path, batch_size, shuffle_size, 
                     model_dir, node_num, port, warm_start_from=None):
     # Generate random data if needed
-    if not os.path.exists(data_path):
-        data_path = data.gen_random_tfrd(
-            items, 1000, filename="data.tfrd" if not data_path else data_path)
     if node_num > 1:
         # distributed mode, use tf.estimator.train_and_evaluate
         # ${node_num} worker, ${node_num} ps servers
@@ -36,10 +33,10 @@ def distributed_run(model_name, mode, input_dict, label_dict,
             "cluster": cluster_config,
             "task": {"type": "chief", "index": 0}
         })
-        chief_process = Process(target=run, args=(model_name, mode, input_dict, 
-                                                  label_dict, data_path, ckpt_path, 
+        chief_process = Process(target=run, args=(model_name, mode,  
+                                                  data_path, ckpt_path, 
                                                   batch_size, shuffle_size, 
-                                                  model_dir, warm_start_from, node_num, ))
+                                                  model_dir, warm_start_from, node_num, True, ))
         chief_process.start()
         # Start worker process
         worker_process = []
@@ -48,8 +45,8 @@ def distributed_run(model_name, mode, input_dict, label_dict,
                 "cluster": cluster_config,
                 "task": {"type": "worker", "index": i}
             })
-            p = Process(target=run, args=(model_name, mode, input_dict, 
-                                          label_dict, data_path, ckpt_path, 
+            p = Process(target=run, args=(model_name, mode, 
+                                          data_path, ckpt_path, 
                                           batch_size, shuffle_size, 
                                           model_dir, warm_start_from, node_num, ))
             p.start()
@@ -61,8 +58,8 @@ def distributed_run(model_name, mode, input_dict, label_dict,
                 "cluster": cluster_config,
                 "task": {"type": "ps", "index": i}
             })
-            p = Process(target=run, args=(model_name, mode, input_dict, 
-                                          label_dict, data_path, ckpt_path, 
+            p = Process(target=run, args=(model_name, mode, 
+                                          data_path, ckpt_path, 
                                           batch_size, shuffle_size, 
                                           model_dir, warm_start_from, node_num, ))
             p.start()
@@ -74,31 +71,43 @@ def distributed_run(model_name, mode, input_dict, label_dict,
             p.join()
         chief_process.join()
     else:
-        run(model_name, mode, input_dict, 
-            label_dict, data_path, ckpt_path, 
+        run(model_name, mode, 
+            data_path, ckpt_path, 
             batch_size, shuffle_size, 
             model_dir, warm_start_from, node_num)
 
 
 def run(model_name, mode,
         data_path, ckpt_path, batch_size, 
-        shuffle_size, model_dir, warm_start_from, ps_num):
+        shuffle_size, model_dir, warm_start_from, ps_num, is_chief=False):
     print ("TF_CONFIG process start ", os.environ['TF_CONFIG'])
     model = importlib.import_module(model_name)
     input_dict = model.input_dict
     label_dict = model.label_dict
-    # generate random dataset
+    label_names = []
+    if getattr(model, 'label_names'):
+        label_names = model.label_names
     items = input_dict
     items.extend(label_dict)
-    parse_input_fn = data.gen_parse_input_fn(items)
+    # generate random dataset
+    if is_chief:
+        if not os.path.exists(data_path):
+            data_path = data.gen_random_tfrd(
+                items, 1000, filename="data.tfrd" if not data_path else data_path)
+    parse_input_fn = data.gen_parse_input_fn(items, label_names)
     run_config = tf.estimator.RunConfig(
         save_checkpoints_steps=10,
         save_checkpoints_secs=None
     )
+    model_params=dict()
+    if getattr(model, 'model_params'):
+        model_params = model.model_params
+    model_params['batch_size'] = batch_size
+    model_params['parameters']['ps_num'] = ps_num
     trainer = tf.estimator.Estimator(
         model_dir=ckpt_path,
         model_fn=model.model_fn,
-        params={'batch_size': batch_size, 'ps_num': ps_num},
+        params=model_params,
         config=run_config,
         warm_start_from=warm_start_from)
     print ('%s model from %s' % (mode, data_path))
@@ -156,8 +165,6 @@ if __name__ == "__main__":
     distributed_run(
         model_name=args.model_name,
         mode=args.mode,
-        input_dict=input_dict,
-        label_dict=label_dict,
         data_path=args.data_path,
         ckpt_path=args.ckpt_path,
         batch_size=args.batch_size, 

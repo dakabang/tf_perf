@@ -45,7 +45,7 @@ def _int64_feature(value):
   """Returns an int64_list from a bool / enum / int / uint."""
   return tf.train.Feature(int64_list=tf.train.Int64List(value=value))
 
-def gen_parse_input_fn(items):
+def gen_parse_input_fn(items, labels=[]):
     assert(len(items) > 0)
     features = dict()
     for item in items:
@@ -56,7 +56,10 @@ def gen_parse_input_fn(items):
         features.update({name: tf.io.FixedLenFeature(shape, dtype)})
     def parse_tfrd_fn(example_proto):
         example = tf.io.parse_example(example_proto, features=features)
-        return {k:v for k,v in example.items() if k!='label'}, example['label']
+        if labels:
+            return {k:v for k,v in example.items() if k not in labels}, {k:v for k,v in example.items() if k in labels}
+        else:
+            return {k:v for k,v in example.items() if k!='label'}, example['label']
     return parse_tfrd_fn
 
 
