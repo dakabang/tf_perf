@@ -3,6 +3,7 @@
 
 import numpy as np
 import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 import data
 import importlib
 import argparse
@@ -85,7 +86,7 @@ def run(model_name, mode,
     input_dict = model.input_dict
     label_dict = model.label_dict
     label_names = []
-    if getattr(model, 'label_names'):
+    if hasattr(model, 'label_names'):
         label_names = model.label_names
     items = input_dict
     items.extend(label_dict)
@@ -100,9 +101,11 @@ def run(model_name, mode,
         save_checkpoints_secs=None
     )
     model_params=dict()
-    if getattr(model, 'model_params'):
+    if hasattr(model, 'model_params'):
         model_params = model.model_params
     model_params['batch_size'] = batch_size
+    if 'parameters' not in model_params:
+        model_params['parameters'] = dict()
     model_params['parameters']['ps_num'] = ps_num
     trainer = tf.estimator.Estimator(
         model_dir=ckpt_path,

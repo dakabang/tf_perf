@@ -458,7 +458,7 @@ model_params = {
 }
 
 def model_fn(features, labels, mode, params):
-    logging.info('mode: %s, labels: %s, params: %s, features: %s', mode, labels, params, features)
+    #logging.info('mode: %s, labels: %s, params: %s, features: %s', mode, labels, params, features)
     if params["args"].get("addon_embedding"):
         import tensorflow_recommenders_addons as tfra
         import tensorflow_recommenders_addons.dynamic_embedding as dynamic_embedding
@@ -474,7 +474,7 @@ def model_fn(features, labels, mode, params):
     feat = params['features']
     sparse_feat_list = list(set(feat["sparse"]) - set(SPARSE_MASK)) if 'sparse' in feat else []
     sparse_seq_feat_list = list(set(feat["sparse_seq"]) - set(SPARSE_SEQ_MASK)) if 'sparse_seq' in feat else []
-    #sparse_seq_feat_list = []
+    sparse_seq_feat_list = []
     #dense_feat_list = list(set(feat["dense"]) - set(DENSE_MASK)) if 'dense' in feat else []
     # hashtable v1/v2 image均无法同时关bn和mask dense_feat
     dense_feat_list = []
@@ -518,10 +518,10 @@ def model_fn(features, labels, mode, params):
     else:
         devices_info = ["/job:localhost/replica:0/task:{}/CPU:0".format(0) for i in range(params["parameters"]["ps_num"])]
         initializer = tf.compat.v1.zeros_initializer()
-
     logging.info("------ dynamic_embedding devices_info is {}-------".format(devices_info))
     if mode == tf.estimator.ModeKeys.PREDICT:
         dynamic_embedding.enable_inference_mode()
+
     deep_dynamic_variables = dynamic_embedding.get_variable(
         name="deep_dynamic_embeddings",
         devices=devices_info,
@@ -833,12 +833,10 @@ def model_fn(features, labels, mode, params):
             optimizer = dynamic_embedding.DynamicEmbeddingOptimizer(optimizer)
 
         train_op = optimizer.minimize(loss, global_step=global_step)
-
         # fix tf2 batch_normalization bug
         update_ops = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.UPDATE_OPS)
         logging.info('train ops: {}, update ops: {}'.format(str(train_op), str(update_ops)))
         train_op = tf.group([train_op, update_ops])
-
         return tf.estimator.EstimatorSpec(mode=mode,
                                           predictions=preds,
                                           loss=loss,
