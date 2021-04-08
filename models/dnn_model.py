@@ -9,39 +9,29 @@ import tensorflow_recommenders_addons as tfra
 import tensorflow_recommenders_addons.dynamic_embedding as de
 from tensorflow.keras.layers import Dense
 
-import mlp
+from models import mlp
 embedding_dim = 32
 
-input_dict = [
-    ("logid", tf.string, [1], 1),
-    ("value_fea", tf.float32, [1000], 1000),
-    ("id_fea", tf.int64, [100], 100),
-]
-label_dict = [("label", tf.float32, [], 1)]
-
 def model_fn(features, labels, mode, params):
-    print ("features %s" % features)
+    print ("features %s labels %s" % (features, labels))
     value_fea = features['value_fea']
     id_fea = features['id_fea']
     id_fea_len = id_fea.shape[1]
     batch_size = params["batch_size"]
-    ps_num = params.get('ps_num', 0)
     is_training = True if mode == tf.estimator.ModeKeys.TRAIN else False
     devices = None
     if is_training:
-        if ps_num > 0:
-            devices = ["/job:ps/replica:0/task:{}/CPU:0".format(i) for i in range(ps_num)]
+        devices = ["/job:ps/replica:0/task:{}/CPU:0".format(i) for i in range(params['ps_num'])]
         initializer=tf.keras.initializers.RandomNormal(0.0, 0.1)
     else:
-        if ps_num > 0:
-            devices = ["/job:localhost/replica:0/task:{}/CPU:0".format(i) for i in range(ps_num)]
+        devices = ["/job:localhost/replica:0/task:{}/CPU:0".format(0) for i in range(params['ps_num'])]
         initializer=tf.keras.initializers.Zeros()
     if mode == tf.estimator.ModeKeys.PREDICT:
         tfra.dynamic_embedding.enable_inference_mode()
     dynamic_embeddings = tfra.dynamic_embedding.get_variable(
         name="dynamic_embeddings",
-        devices = devices,
         dim=embedding_dim,
+        devices=devices,
         initializer=initializer,
         trainable=is_training,
         init_size=8192)
@@ -58,16 +48,20 @@ def model_fn(features, labels, mode, params):
     inputs = tf.compat.v1.layers.batch_normalization(inputs, training=is_training)
     print ("inputs shape %s" % inputs)
     # three layer mlp
-    out, inners = mlp.multilayer_perception(inputs, [256, 64, 1])
+    out, inners = mlp.multilayer_perception(inputs, [1024, 512, 256, 64, 1])
     logits = tf.reshape(out, [-1])
+    tf.compat.v1.summary.histogram("logits", logits)
     if mode == tf.estimator.ModeKeys.TRAIN:
         global_step = tf.compat.v1.train.get_global_step()
         loss = tf.math.reduce_mean(
-            tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits))
+            tf.nn.sigmoid_cross_entropy_with_logits(labels=labels['label'], logits=logits))
         opt = de.DynamicEmbeddingOptimizer(tf.compat.v1.train.AdamOptimizer(beta1=0.9, beta2=0.999))
+        tf.compat.v1.summary.scalar("loss", loss)
+        tf.compat.v1.summary.scalar("global_step", global_step)
     elif mode == tf.estimator.ModeKeys.EVAL:
         loss = tf.math.reduce_mean(
-            tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits))
+            tf.nn.sigmoid_cross_entropy_with_logits(labels=labels['label'], logits=logits))
+        tf.compat.v1.summary.scalar("loss", loss)
     elif mode == tf.estimator.ModeKeys.PREDICT:
         pass
     if mode == tf.estimator.ModeKeys.TRAIN:

@@ -1,0 +1,333 @@
+2021-04-08 03:31:58.777278: I tensorflow_serving/model_servers/server.cc:88] Building single TensorFlow model file config:  model_name: dnn_model model_base_path: /root/tfperf/saved_model
+2021-04-08 03:31:58.777642: I tensorflow_serving/model_servers/server_core.cc:464] Adding/updating models.
+2021-04-08 03:31:58.777673: I tensorflow_serving/model_servers/server_core.cc:587]  (Re-)adding model: dnn_model
+2021-04-08 03:31:58.878631: I tensorflow_serving/core/basic_manager.cc:740] Successfully reserved resources to load servable {name: dnn_model version: 1617852666}
+2021-04-08 03:31:58.878711: I tensorflow_serving/core/loader_harness.cc:66] Approving load for servable version {name: dnn_model version: 1617852666}
+2021-04-08 03:31:58.878746: I tensorflow_serving/core/loader_harness.cc:74] Loading servable version {name: dnn_model version: 1617852666}
+2021-04-08 03:31:58.878850: I external/org_tensorflow/tensorflow/cc/saved_model/reader.cc:32] Reading SavedModel from: /root/tfperf/saved_model/1617852666
+2021-04-08 03:31:58.880892: I external/org_tensorflow/tensorflow/cc/saved_model/reader.cc:55] Reading meta graph with tags { serve }
+2021-04-08 03:31:58.880961: I external/org_tensorflow/tensorflow/cc/saved_model/reader.cc:93] Reading SavedModel debug info (if present) from: /root/tfperf/saved_model/1617852666
+2021-04-08 03:31:58.881139: I external/org_tensorflow/tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-04-08 03:31:58.913316: I external/org_tensorflow/tensorflow/cc/saved_model/loader.cc:206] Restoring SavedModel bundle.
+2021-04-08 03:31:58.914865: I external/org_tensorflow/tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2599995000 Hz
+2021-04-08 03:31:58.934424: I tensorflow_recommenders_addons/dynamic_embedding/core/kernels/cuckoo_hashtable_op.cc:141] CPU CuckooHashTableOfTensors init: size = 2730
+2021-04-08 03:31:58.935087: I tensorflow_recommenders_addons/dynamic_embedding/core/kernels/cuckoo_hashtable_op.cc:141] CPU CuckooHashTableOfTensors init: size = 2730
+2021-04-08 03:31:58.935604: I tensorflow_recommenders_addons/dynamic_embedding/core/kernels/cuckoo_hashtable_op.cc:141] CPU CuckooHashTableOfTensors init: size = 2730
+[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:17470635489392589074] hash table is full (hashpower = 10, hash_items = 3871,load factor = 0.94), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:11458786594806474333] hash table is full (hashpower = 10, hash_items = 3879,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:9782275548544276223] hash table is full (hashpower = 10, hash_items = 3879,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:9329989632134094322] hash table is full (hashpower = 10, hash_items = 3882,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:16779868281668258594] hash table is full (hashpower = 10, hash_items = 3882,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:9257737046043583991] hash table is full (hashpower = 10, hash_items = 3882,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:18364218683075600363] hash table is full (hashpower = 10, hash_items = 3879,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:5683538336518017011] hash table is full (hashpower = 10, hash_items = 3882,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:18364218683075600363] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11885210215345231090] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:2885662091623253783] hash table is full (hashpower = 10, hash_items = 3882,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12965982483307821344] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12427437756862168493] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5391979225508386922] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13505619898129220743] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:785631599730634673] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17441566321685731355] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11803540904778688261] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5721818935498615411] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:5683538336518017011] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14891612884391690936] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:12779888198386582394] hash table is full (hashpower = 10, hash_items = 3875,load factor = 0.94), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16936967748242971256] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:16779868281668258594] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:6486182828322005510] hash table is full (hashpower = 10, hash_items = 3972,load factor = 0.97), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:12779888198386582394] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:2885662091623253783] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:11458786594806474333] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:9257737046043583991] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:9329989632134094322] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:1328410284719093142] hash table is full (hashpower = 10, hash_items = 3651,load factor = 0.89), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:18270927744182580013] hash table is full (hashpower = 10, hash_items = 3658,load factor = 0.89), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:9782275548544276223] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6990430878418934412] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:650638472657422421] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13902968119635188834] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17933510221280124688] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:11803540904778688261] hash table is full (hashpower = 11, hash_items = 7616,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:484018644770179901] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14430603654094701025] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:18270927744182580013] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:13902968119635188834] hash table is full (hashpower = 11, hash_items = 7888,load factor = 0.96), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12427437756862168493] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16779868281668258594] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5683538336518017011] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5391979225508386922] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9782275548544276223] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13505619898129220743] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17470635489392589074] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:2885662091623253783] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12779888198386582394] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5721818935498615411] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12965982483307821344] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14891612884391690936] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11458786594806474333] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17441566321685731355] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:785631599730634673] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11304669403489840619] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16936967748242971256] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9257737046043583991] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9329989632134094322] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18364218683075600363] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11885210215345231090] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:12779888198386582394] hash table is full (hashpower = 12, hash_items = 15237,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:16779868281668258594] hash table is full (hashpower = 12, hash_items = 15249,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:5721818935498615411] hash table is full (hashpower = 12, hash_items = 15237,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:11885210215345231090] hash table is full (hashpower = 12, hash_items = 15263,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:14891612884391690936] hash table is full (hashpower = 12, hash_items = 15268,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:17470635489392589074] hash table is full (hashpower = 12, hash_items = 15268,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:12427437756862168493] hash table is full (hashpower = 12, hash_items = 15268,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:484018644770179901] hash table is full (hashpower = 11, hash_items = 7587,load factor = 0.93), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:650638472657422421] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6486182828322005510] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6990430878418934412] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17933510221280124688] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14430603654094701025] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18270927744182580013] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:1328410284719093142] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12965982483307821344] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9329989632134094322] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9782275548544276223] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11304669403489840619] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:2885662091623253783] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11458786594806474333] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17441566321685731355] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:12427437756862168493] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13505619898129220743] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18364218683075600363] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16936967748242971256] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5391979225508386922] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5683538336518017011] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11803540904778688261] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:6990430878418934412] hash table is full (hashpower = 12, hash_items = 14222,load factor = 0.87), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:16779868281668258594] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9257737046043583991] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:17470635489392589074] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:14891612884391690936] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:785631599730634673] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:11885210215345231090] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:5721818935498615411] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:484018644770179901] hash table is full (hashpower = 12, hash_items = 13637,load factor = 0.83), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:14891612884391690936] hash table is full (hashpower = 13, hash_items = 29885,load factor = 0.91), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:11885210215345231090] hash table is full (hashpower = 13, hash_items = 29916,load factor = 0.91), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:16936967748242971256] hash table is full (hashpower = 13, hash_items = 29920,load factor = 0.91), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:12427437756862168493] hash table is full (hashpower = 13, hash_items = 29920,load factor = 0.91), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:13505619898129220743] hash table is full (hashpower = 13, hash_items = 29920,load factor = 0.91), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:2885662091623253783] hash table is full (hashpower = 13, hash_items = 29920,load factor = 0.91), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:5721818935498615411] hash table is full (hashpower = 13, hash_items = 29920,load factor = 0.91), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18270927744182580013] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14430603654094701025] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:1328410284719093142] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:650638472657422421] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13902968119635188834] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17933510221280124688] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6486182828322005510] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9782275548544276223] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:785631599730634673] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11803540904778688261] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5683538336518017011] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18364218683075600363] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16779868281668258594] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5391979225508386922] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11458786594806474333] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11304669403489840619] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12779888198386582394] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12965982483307821344] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9257737046043583991] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17441566321685731355] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9329989632134094322] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17470635489392589074] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:2885662091623253783] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:13505619898129220743] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:12427437756862168493] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:5721818935498615411] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:16936967748242971256] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:11885210215345231090] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:6486182828322005510] hash table is full (hashpower = 13, hash_items = 24079,load factor = 0.73), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:785631599730634673] hash table is full (hashpower = 13, hash_items = 24523,load factor = 0.75), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:12965982483307821344] hash table is full (hashpower = 14, hash_items = 62640,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:5391979225508386922] hash table is full (hashpower = 14, hash_items = 62640,load factor = 0.95), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:9257737046043583991] hash table is full (hashpower = 14, hash_items = 62682,load factor = 0.96), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:2885662091623253783] hash table is full (hashpower = 14, hash_items = 62682,load factor = 0.96), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:14891612884391690936] hash table is full (hashpower = 14, hash_items = 62685,load factor = 0.96), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12427437756862168493] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11885210215345231090] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14430603654094701025] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18270927744182580013] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13902968119635188834] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13505619898129220743] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16936967748242971256] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16779868281668258594] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6990430878418934412] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17933510221280124688] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:650638472657422421] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11458786594806474333] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:1328410284719093142] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5721818935498615411] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:484018644770179901] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:650638472657422421] hash table is full (hashpower = 14, hash_items = 52349,load factor = 0.80), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:12427437756862168493] hash table is full (hashpower = 14, hash_items = 49647,load factor = 0.76), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9782275548544276223] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9329989632134094322] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17470635489392589074] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17441566321685731355] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11803540904778688261] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11304669403489840619] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5683538336518017011] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12779888198386582394] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18364218683075600363] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:5391979225508386922] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:785631599730634673] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11885210215345231090] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18270927744182580013] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16936967748242971256] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14430603654094701025] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:484018644770179901] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:1328410284719093142] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:14891612884391690936] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:9257737046043583991] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:2885662091623253783] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:1328410284719093142] hash table is full (hashpower = 15, hash_items = 117390,load factor = 0.90), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16779868281668258594] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13505619898129220743] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6486182828322005510] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11458786594806474333] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17933510221280124688] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5721818935498615411] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6990430878418934412] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13902968119635188834] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5683538336518017011] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12427437756862168493] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9329989632134094322] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5391979225508386922] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:17470635489392589074] hash table is full (hashpower = 15, hash_items = 120957,load factor = 0.92), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:6990430878418934412] hash table is full (hashpower = 15, hash_items = 111564,load factor = 0.85), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:17933510221280124688] hash table is full (hashpower = 15, hash_items = 111595,load factor = 0.85), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1305:5391979225508386922] hash table is full (hashpower = 15, hash_items = 111604,load factor = 0.85), need to increase hashpower
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11304669403489840619] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11803540904778688261] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14891612884391690936] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9257737046043583991] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18364218683075600363] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12965982483307821344] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:2885662091623253783] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13505619898129220743] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11885210215345231090] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5683538336518017011] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16936967748242971256] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18270927744182580013] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9782275548544276223] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17441566321685731355] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:14430603654094701025] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:484018644770179901] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16779868281668258594] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12427437756862168493] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:785631599730634673] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9329989632134094322] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:650638472657422421] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12779888198386582394] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6486182828322005510] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13902968119635188834] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11458786594806474333] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5721818935498615411] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:6486182828322005510] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12965982483307821344] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:785631599730634673] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:4540687320317668479] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11304669403489840619] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:484018644770179901] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:2885662091623253783] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:9782275548544276223] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:13505619898129220743] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:17470635489392589074] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16779868281668258594] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:16936967748242971256] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:18364218683075600363] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:5683538336518017011] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:1328410284719093142] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:12779888198386582394] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:954:11885210215345231090] hashpower changed
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:17933510221280124688] another expansion is on-going
+[0m[32m[libcuckoo:./tensorflow_recommenders_addons/dynamic_embedding/core/lib/cuckoo/cuckoohash_map.hh:1839:5391979225508386922] another expansion is on-going
+[0m2021-04-08 03:31:59.440182: I external/org_tensorflow/tensorflow/cc/saved_model/loader.cc:190] Running initialization op on SavedModel bundle at path: /root/tfperf/saved_model/1617852666
+2021-04-08 03:31:59.449593: I external/org_tensorflow/tensorflow/cc/saved_model/loader.cc:277] SavedModel load for tags { serve }; Status: success: OK. Took 570748 microseconds.
+2021-04-08 03:31:59.450020: I tensorflow_serving/servables/tensorflow/saved_model_warmup_util.cc:59] No warmup data file found at /root/tfperf/saved_model/1617852666/assets.extra/tf_serving_warmup_requests
+2021-04-08 03:31:59.450293: I tensorflow_serving/core/loader_harness.cc:87] Successfully loaded servable version {name: dnn_model version: 1617852666}
+2021-04-08 03:31:59.463947: I tensorflow_serving/model_servers/server.cc:371] Running gRPC ModelServer at 0.0.0.0:8500 ...
+2021-04-08 03:38:31.886397: I external/org_tensorflow/tensorflow/core/profiler/lib/profiler_session.cc:136] Profiler session initializing.
+2021-04-08 03:38:31.886526: W external/org_tensorflow/tensorflow/core/profiler/lib/profiler_session.cc:144] Profiling is late (2021-04-08T03:38:31.88645062+00:00) for the scheduled start (2021-04-08T03:38:31.882299453+00:00) and will start immediately.
+2021-04-08 03:38:31.886541: I external/org_tensorflow/tensorflow/core/profiler/lib/profiler_session.cc:155] Profiler session started.
+2021-04-08 03:38:42.905886: I external/org_tensorflow/tensorflow/core/profiler/lib/profiler_session.cc:71] Profiler session collecting data.
+2021-04-08 03:38:43.061147: I external/org_tensorflow/tensorflow/core/profiler/rpc/profiler_service_impl.cc:67] Collecting XSpace to repository: serving_perf/plugins/profile/2021_04_08_03_38_31/localhost_8500.xplane.pb
+2021-04-08 03:38:43.075413: I external/org_tensorflow/tensorflow/core/profiler/lib/profiler_session.cc:172] Profiler session tear down.
+2021-04-08 04:15:47.630350: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:48.630152: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:49.630285: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:50.630429: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:51.630567: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:52.630669: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:53.630849: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:54.631016: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:55.631182: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:56.631274: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:57.631365: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:58.631506: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:15:59.631659: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:00.631810: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:01.631954: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:02.632031: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:03.632176: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:04.632304: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:05.632417: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:06.632580: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:07.632714: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:08.632819: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:09.632959: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:10.633044: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:11.633156: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:12.633259: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:13.633365: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:14.633518: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:15.633676: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:16.633761: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:17.633987: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:18.634027: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:19.634189: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:20.634316: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:21.634474: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:22.634535: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:23.634719: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:24.634834: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:25.635010: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:26.635146: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:27.635311: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:28.635419: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:29.635572: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:30.635725: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:31.635962: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:32.635989: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:33.636120: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:34.636266: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:35.636357: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:36.636444: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:37.636568: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:38.636648: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:39.636800: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:40.636959: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:41.637096: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:42.637199: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
+2021-04-08 04:16:43.637369: E tensorflow_serving/sources/storage_path/file_system_storage_path_source.cc:364] FileSystemStoragePathSource encountered a filesystem access error: Could not find base path /root/tfperf/saved_model for servable dnn_model
